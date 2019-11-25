@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AddressMicroService.DBContexts;
+using AddressMicroService.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +30,7 @@ namespace AddressMicroService
         {
             services.AddControllers();
             services.AddDbContext<AddressContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DevelopDB")));
+            services.AddTransient<IAddressRepository, AddressRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
