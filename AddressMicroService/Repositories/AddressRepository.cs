@@ -4,54 +4,48 @@ using System.Linq;
 using System.Threading.Tasks;
 using AddressMicroService.DBContexts;
 using AddressMicroService.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AddressMicroService.Repositories
 {
     public class AddressRepository : IAddressRepository
     {
-        private readonly AddressContext _dbContet;
+        private readonly AddressContext _dbContext;
 
         public AddressRepository(AddressContext dbContext)
         {
-            _dbContet = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
-        public void DeleteAddress(int id)
+        public async void DeleteAddress(int id)
         {
-            var address = _dbContet.Addresses.Find(id);
+            var address = await _dbContext.Addresses.FindAsync(id);
 
-            _dbContet.Addresses.Remove(address);
+            _dbContext.Addresses.Remove(address);
 
-            Save();
+            await _dbContext.SaveChangesAsync(); 
         }
 
-        public Address GetAddress(int id)
+        public async Task<Address> GetAddress(int id)
         {
-            return _dbContet.Addresses.Find(id);
+            return await _dbContext.Addresses.FindAsync(id);
         }
 
-        public IEnumerable<Address> GetAddresses()
+        public async Task<IEnumerable<Address>> GetAddresses()
         {
-            return _dbContet.Addresses;
+            return await _dbContext.Addresses.ToListAsync();
         }
 
-        public void InsertAddress(Address address)
+        public async void InsertAddress(Address address)
         {
-            _dbContet.Addresses.Add(address);
-
-            Save();
+            await _dbContext.Addresses.AddAsync(address);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public void Save()
+        public async void UpdateAddress(Address address)
         {
-            _dbContet.SaveChanges(); 
-        }
-
-        public void UpdateAddress(Address address)
-        {
-            _dbContet.Entry(address).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-
-            Save();
+            _dbContext.Entry(address).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
