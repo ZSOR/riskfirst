@@ -14,6 +14,7 @@ namespace AddressMicroService.DBContexts
             modelBuilder.Entity<Address>().HasData(
                 new Address
                 {
+                    Id= 1, 
                     FirstName = "John",
                     LastName = "Smith",
                     StreetAddress = "Test St 1",
@@ -22,6 +23,7 @@ namespace AddressMicroService.DBContexts
                 },
                 new Address
                 {
+                    Id=2,
                     FirstName = "Jane",
                     LastName = "Doe",
                     StreetAddress = "Test St 2",
@@ -30,6 +32,7 @@ namespace AddressMicroService.DBContexts
                 },
                 new Address
                 {
+                    Id=3,
                     FirstName = "Tim",
                     LastName = "Jones",
                     StreetAddress = "Test St 3",
