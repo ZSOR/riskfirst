@@ -17,13 +17,14 @@ namespace AddressMicroService.Repositories
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
-        public async void DeleteAddress(int id)
+        public async Task<Address> DeleteAddress(int id)
         {
             var address = await _dbContext.Addresses.FindAsync(id);
 
             _dbContext.Addresses.Remove(address);
 
-            await _dbContext.SaveChangesAsync(); 
+            await _dbContext.SaveChangesAsync();
+            return address;
         }
 
         public async Task<Address> GetAddress(int id)

@@ -11,7 +11,7 @@ namespace AddressMicroService.Repositories
         Task<IEnumerable<Address>> GetAddresses();
         Task<Address> GetAddress(int id);
         void InsertAddress(Address address);
-        void DeleteAddress(int id);
+        Task<Address> DeleteAddress(int id);
         void UpdateAddress(Address address);
        
     }
