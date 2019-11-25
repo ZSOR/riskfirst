@@ -2,40 +2,56 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AddressMicroService.DBContexts;
 using AddressMicroService.Models;
 
 namespace AddressMicroService.Repositories
 {
     public class AddressRepository : IAddressRepository
     {
-        public void DeleteAddress()
+        private readonly AddressContext _dbContet;
+
+        public AddressRepository(AddressContext dbContext)
         {
-            throw new NotImplementedException();
+            _dbContet = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+        }
+
+        public void DeleteAddress(int id)
+        {
+            var address = _dbContet.Addresses.Find(id);
+
+            _dbContet.Addresses.Remove(address);
+
+            Save();
         }
 
         public Address GetAddress(int id)
         {
-            throw new NotImplementedException();
+            return _dbContet.Addresses.Find(id);
         }
 
         public IEnumerable<Address> GetAddresses()
         {
-            throw new NotImplementedException();
+            return _dbContet.Addresses;
         }
 
         public void InsertAddress(Address address)
         {
-            throw new NotImplementedException();
+            _dbContet.Addresses.Add(address);
+
+            Save();
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            _dbContet.SaveChanges(); 
         }
 
         public void UpdateAddress(Address address)
         {
-            throw new NotImplementedException();
+            _dbContet.Entry(address).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+
+            Save();
         }
     }
 }

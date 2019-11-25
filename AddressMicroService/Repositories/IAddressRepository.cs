@@ -11,7 +11,7 @@ namespace AddressMicroService.Repositories
         IEnumerable<Address> GetAddresses();
         Address GetAddress(int id);
         void InsertAddress(Address address);
-        void DeleteAddress();
+        void DeleteAddress(int id);
         void UpdateAddress(Address address);
         void Save();
 

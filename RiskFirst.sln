@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddressMicroService", "AddressMicroService\AddressMicroService.csproj", "{13D7C18B-5B34-4235-90FA-AC5DD18C0B04}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "AddressDB", "AddressDB\AddressDB.sqlproj", "{9C057C68-49EE-41C0-B133-6EA379DC674B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +15,6 @@ Global
 		{13D7C18B-5B34-4235-90FA-AC5DD18C0B04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13D7C18B-5B34-4235-90FA-AC5DD18C0B04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13D7C18B-5B34-4235-90FA-AC5DD18C0B04}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9C057C68-49EE-41C0-B133-6EA379DC674B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C057C68-49EE-41C0-B133-6EA379DC674B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9C057C68-49EE-41C0-B133-6EA379DC674B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{9C057C68-49EE-41C0-B133-6EA379DC674B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9C057C68-49EE-41C0-B133-6EA379DC674B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9C057C68-49EE-41C0-B133-6EA379DC674B}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
