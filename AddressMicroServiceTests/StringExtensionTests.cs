@@ -3,13 +3,8 @@ using NUnit.Framework;
 
 namespace AddressMicroServiceTests
 {
-    public class Tests
+    public class StringExtensionTests
     {
-        [SetUp]
-        public void Setup()
-        {
-
-        }
 
         [TestCase("string", "string", 0, ExpectedResult = true)]
         [TestCase("Test", "Test", 0, ExpectedResult = true)]

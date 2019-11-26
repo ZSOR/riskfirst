@@ -12,17 +12,22 @@ namespace AddressMicroService.Extensions
         {
             var result = new Dictionary<string, IEnumerable<TSource>>();
 
-
+            //Clone the collection so we dont destryo the original
+            collection = collection.ToList();
             while (collection.Any())
             {
                 var item = collection.First();
-                var entries = new List<TSource>();
+                var entries = new List<TSource>() { item };
                 collection.Remove(item);
-                foreach(var x in collection)
+
+                for (int i = collection.Count-1; i >= 0; i--)
                 {
-                    if (expression.Invoke(x).ToString().FuzzyCompare(expression.Invoke(item).ToString(), score))
+                    var entry = collection.ElementAt(i);
+                    if (expression.Invoke(entry).ToString().FuzzyCompare(expression.Invoke(item).ToString(), score))
                     {
-                        entries.Add(x);
+                        entries.Add(entry);
+                        collection.Remove(entry);
+                        
                     }
                 }
                 result.Add(expression.Invoke(item).ToString(), entries);
