@@ -28,7 +28,17 @@ namespace AddressMicroService.Controllers
 
             return addresses.ToList();
         }
+        [HttpGet]
+        public async Task<ActionResult<Dictionary<string, Address>>> GetAddressesGroupedByCity()
+        {
+            throw new NotImplementedException();
+        }
 
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Address>>> GetAddressesForCity(string city)
+        {
+            throw new NotImplementedException();
+        }
         // GET: api/Addresses/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Address>> GetAddress(int id)

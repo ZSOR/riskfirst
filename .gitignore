@@ -1,3 +1,5 @@
 /AddressMicroService/bin
 /AddressMicroService/obj
 /.vs
+/AddressMicroServiceTests/bin
+/AddressMicroServiceTests/obj
