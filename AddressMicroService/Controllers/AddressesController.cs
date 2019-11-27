@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AddressMicroService.Models;
 using AddressMicroService.Repositories;
+using AddressMicroService.Extensions;
 
 namespace AddressMicroService.Controllers
 {
@@ -28,17 +29,14 @@ namespace AddressMicroService.Controllers
 
             return addresses.ToList();
         }
-        [HttpGet]
-        public async Task<ActionResult<Dictionary<string, Address>>> GetAddressesGroupedByCity()
+        [HttpGet("GetAddressesGroupedByCity")]
+        public async Task<ActionResult<Dictionary<string, IEnumerable<Address>>>> GetAddressesGroupedByCity()
         {
-            throw new NotImplementedException();
+            var addresses = await _addressRepository.GetAddresses();
+
+            return addresses.GroupByFuzzyString(x => x.City, 3);
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Address>>> GetAddressesForCity(string city)
-        {
-            throw new NotImplementedException();
-        }
         // GET: api/Addresses/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Address>> GetAddress(int id)

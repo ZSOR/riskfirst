@@ -8,12 +8,11 @@ namespace AddressMicroService.Extensions
     public static class EnumerableExtension
     {
         //This is pretty over engineered and not really necisarry but I thought it was a neat way of doing the grouping
-        public static Dictionary<string, IEnumerable<TSource>> GroupByFuzzyString<TSource, TKey>(this ICollection<TSource> collection, Func<TSource, TKey> expression , int score)
+        public static Dictionary<string, IEnumerable<TSource>> GroupByFuzzyString<TSource, TKey>(this IEnumerable<TSource> enumerable, Func<TSource, TKey> expression , int score)
         {
             var result = new Dictionary<string, IEnumerable<TSource>>();
 
-            //Clone the collection so we dont destryo the original
-            collection = collection.ToList();
+            var collection = enumerable.ToList();
             while (collection.Any())
             {
                 var item = collection.First();
